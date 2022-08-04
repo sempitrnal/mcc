@@ -20,14 +20,14 @@ button {
 	font-size: 1.5rem;
 	font-weight: 500;
 	color: white;
-	outline: 1px solid rgb(47, 47, 47);
+	border: 0.01px solid #4a4a4a;
 }
 .output {
 	outline: 1px solid rgb(47, 47, 47);
 }
 @layer components {
 	button {
-		@apply active:bg-[#8f8f8f] transition-colors cursor-default;
+		@apply active:bg-[#8f8f8f]  transition-colors cursor-default;
 	}
 	.App {
 		@apply bg-[#141414];
@@ -49,7 +49,7 @@ button {
 		@apply text-white text-3xl pb-2;
 	}
 	.text {
-		@apply text-[#bcbcbc] bottom-[2rem] text-xs font-[500] absolute;
+		@apply text-[#bcbcbc] mt-[5rem] text-xs font-[500];
 	}
 	.text-2 {
 		@apply text-[#ffffff] top-[10rem] text-3xl mb-[1rem] mt-[10rem];
