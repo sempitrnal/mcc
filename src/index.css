@@ -46,7 +46,7 @@ button {
 		@apply text-[#c7c7c7] text-xs pt-2 max-h-max min-h-[1rem];
 	}
 	.current-operand {
-		@apply text-white text-3xl pb-2 text-[1.4vw];
+		@apply text-white text-3xl pb-2;
 	}
 	.text {
 		@apply text-[#bcbcbc] bottom-[2rem] text-xs font-[500] absolute;
