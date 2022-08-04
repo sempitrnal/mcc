@@ -40,7 +40,7 @@ button {
 	}
 
 	.output {
-		@apply col-start-1 col-end-[-1] bg-[#25292C]   px-2 flex flex-col justify-between items-end gap-3 break-all  rounded-t-xl;
+		@apply col-start-1 col-end-[-1] bg-[#25292C]   px-2 flex flex-col justify-between items-end gap-3 break-all  rounded-t-xl overflow-hidden;
 	}
 	.previous-operand {
 		@apply text-[#c7c7c7] text-xs pt-2 max-h-max min-h-[1rem];
