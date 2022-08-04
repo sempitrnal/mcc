@@ -12,9 +12,9 @@ export const ACTIONS = {
 };
 
 function reducer(state, { type, payload }) {
+	let curr = state.currentOperand;
 	switch (type) {
 		case ACTIONS.ADD_DIGIT:
-			console.log(typeof state.currentOperand);
 			if (payload.digit === "0" && state.currentOperand === "0")
 				return state;
 
@@ -82,20 +82,25 @@ function reducer(state, { type, payload }) {
 				currentOperand: "0",
 			};
 		case ACTIONS.PERCENT:
-			console.log(state.currentOperand);
-			if (state.previousOperand == null) {
+			if (curr.includes(",")) {
+				curr = comma(curr);
+			}
+			if (state.previousOperand == null || state.operation == null) {
 				return {
-					currentOperand: (state.currentOperand / 100).toString(),
+					currentOperand: (curr / 100).toLocaleString(),
 				};
 			}
 			return {
-				currentOperand: evaluate(state) / 100,
+				currentOperand: (evaluate(state) / 100).toLocaleString(),
 			};
 		case ACTIONS.EVALUATE:
-			console.log(typeof state.currentOperand);
+			if (curr.includes(",")) {
+				curr = comma(curr);
+			}
+
 			if (state.previousOperand == null || state.operation == null) {
 				return {
-					currentOperand: formatOperand(state.currentOperand),
+					currentOperand: parseFloat(curr).toLocaleString(),
 				};
 			}
 			return {
@@ -137,8 +142,16 @@ function evaluate({ currentOperand, previousOperand, operation }) {
 	return computation.toString();
 }
 const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
-	maximumFractionDigits: 0,
+	maximumFractionDigits: 3,
 });
+
+function comma(x) {
+	return x
+		.toString()
+		.split(",")
+		.filter((e) => e !== ",")
+		.join("");
+}
 
 function formatOperand(operand) {
 	if (operand == null) return;
@@ -149,7 +162,7 @@ function formatOperand(operand) {
 			.filter((e) => e !== ",")
 			.join("");
 	}
-	console.log(integer);
+
 	if (decimal == null) return INTEGER_FORMATTER.format(integer);
 	return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
 }
@@ -175,6 +188,9 @@ function Calculator() {
 	const divide = useRef();
 	const percent = useRef();
 	const del = useRef();
+	const clear = useRef();
+	const negate = useRef();
+
 	useEffect(() => {
 		window.addEventListener("keydown", (e) => {
 			if (e.key === "0") {
@@ -207,7 +223,7 @@ function Calculator() {
 			if (e.key === "9") {
 				digit9.current.click();
 			}
-			if (e.key === "Period") {
+			if (e.key === ".") {
 				period.current.click();
 			}
 			if (e.key === "Enter" || e.key === "=") {
@@ -227,6 +243,7 @@ function Calculator() {
 				times.current.blur();
 				divide.current.blur();
 				percent.current.blur();
+				clear.current.blur();
 			}
 			if (e.key === "+") {
 				plus.current.click();
@@ -242,6 +259,17 @@ function Calculator() {
 			}
 			if (e.key === "%") {
 				percent.current.click();
+			}
+			if (e.key === "n" || e.key === "N") {
+				negate.current.click();
+			}
+			if (
+				e.key === "a" ||
+				e.key === "c" ||
+				e.key === "A" ||
+				e.key === "C"
+			) {
+				clear.current.click();
 			}
 			if (e.key === "Backspace") {
 				del.current.click();
@@ -267,8 +295,16 @@ function Calculator() {
 						{formatOperand(currentOperand)}
 					</div>
 				</div>
-				<OperationButton operation="AC" dispatch={dispatch} />
-				<OperationButton operation="+/-" dispatch={dispatch} />
+				<OperationButton
+					fak={clear}
+					operation="AC"
+					dispatch={dispatch}
+				/>
+				<OperationButton
+					fak={negate}
+					operation="+/-"
+					dispatch={dispatch}
+				/>
 				<OperationButton
 					fak={percent}
 					operation="%"
