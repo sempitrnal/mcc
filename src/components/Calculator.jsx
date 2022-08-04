@@ -14,6 +14,7 @@ export const ACTIONS = {
 function reducer(state, { type, payload }) {
 	switch (type) {
 		case ACTIONS.ADD_DIGIT:
+			console.log(typeof state.currentOperand);
 			if (payload.digit === "0" && state.currentOperand === "0")
 				return state;
 
@@ -81,15 +82,17 @@ function reducer(state, { type, payload }) {
 				currentOperand: "0",
 			};
 		case ACTIONS.PERCENT:
+			console.log(state.currentOperand);
 			if (state.previousOperand == null) {
 				return {
-					currentOperand: state.currentOperand / 100,
+					currentOperand: (state.currentOperand / 100).toString(),
 				};
 			}
 			return {
 				currentOperand: evaluate(state) / 100,
 			};
 		case ACTIONS.EVALUATE:
+			console.log(typeof state.currentOperand);
 			if (state.previousOperand == null || state.operation == null) {
 				let curr = state.currentOperand;
 				if (curr.includes(",")) {
@@ -146,6 +149,7 @@ const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
 
 function formatOperand(operand) {
 	if (operand == null) return;
+
 	let [integer, decimal] = operand.split(".");
 	if (integer.includes(",")) {
 		integer = integer
@@ -153,6 +157,7 @@ function formatOperand(operand) {
 			.filter((e) => e !== ",")
 			.join("");
 	}
+	console.log(parseFloat(integer));
 	if (decimal == null) return INTEGER_FORMATTER.format(integer);
 	return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
 }
@@ -249,7 +254,6 @@ function Calculator() {
 			if (e.key === "Backspace") {
 				del.current.click();
 			}
-			console.log(e);
 		});
 	}, []);
 
