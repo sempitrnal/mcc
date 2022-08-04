@@ -1,13 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+	margin: 0;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+		"Helvetica Neue", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+button {
+	background: rgb(123, 123, 123);
+	padding: 0.6rem 0.8rem;
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: white;
+	outline: 1px solid rgb(47, 47, 47);
+}
+.output {
+	outline: 1px solid rgb(47, 47, 47);
+}
+@layer components {
+	button {
+		@apply active:bg-[#8f8f8f] transition-colors cursor-default;
+	}
+	.App {
+		@apply bg-[#141414];
+	}
+	.wrapper {
+		@apply flex items-center h-screen flex-col;
+	}
+	.calculator-grid {
+		@apply grid grid-cols-[repeat(4,4rem)];
+	}
+
+	.output {
+		@apply col-start-1 col-end-[-1] bg-[#25292C]   px-2 flex flex-col justify-between items-end gap-3 break-all  rounded-t-xl;
+	}
+	.previous-operand {
+		@apply text-[#c7c7c7] text-xs pt-2 max-h-max min-h-[1rem];
+	}
+	.current-operand {
+		@apply text-white text-3xl pb-2 text-[1.4vw];
+	}
+	.text {
+		@apply text-[#bcbcbc] bottom-[2rem] text-xs font-[500] absolute;
+	}
+	.text-2 {
+		@apply text-[#ffffff] top-[10rem] text-3xl mb-[1rem] mt-[10rem];
+	}
+	.text-3 {
+		@apply text-[#656565] top-[13rem] text-xs font-semibold mb-[5rem];
+	}
 }
