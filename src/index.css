@@ -55,6 +55,6 @@ button {
 		@apply text-[#ffffff] top-[10rem] text-3xl mb-[1rem] mt-[10rem];
 	}
 	.text-3 {
-		@apply text-[#656565] top-[13rem] text-xs font-semibold mb-[5rem];
+		@apply text-[#656565] top-[13rem] text-xs font-semibold mb-[5rem] text-center w-[70%];
 	}
 }

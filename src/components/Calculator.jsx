@@ -94,15 +94,8 @@ function reducer(state, { type, payload }) {
 		case ACTIONS.EVALUATE:
 			console.log(typeof state.currentOperand);
 			if (state.previousOperand == null || state.operation == null) {
-				let curr = state.currentOperand;
-				if (curr.includes(",")) {
-					curr = curr
-						.split(",")
-						.filter((e) => e !== ",")
-						.join("");
-				}
 				return {
-					currentOperand: parseFloat(curr).toLocaleString(),
+					currentOperand: formatOperand(state.currentOperand),
 				};
 			}
 			return {
@@ -149,7 +142,6 @@ const INTEGER_FORMATTER = new Intl.NumberFormat("en-us", {
 
 function formatOperand(operand) {
 	if (operand == null) return;
-
 	let [integer, decimal] = operand.split(".");
 	if (integer.includes(",")) {
 		integer = integer
@@ -157,7 +149,7 @@ function formatOperand(operand) {
 			.filter((e) => e !== ",")
 			.join("");
 	}
-	console.log(parseFloat(integer));
+	console.log(integer);
 	if (decimal == null) return INTEGER_FORMATTER.format(integer);
 	return `${INTEGER_FORMATTER.format(integer)}.${decimal}`;
 }
