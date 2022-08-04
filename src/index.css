@@ -30,10 +30,10 @@ button {
 		@apply active:bg-[#8f8f8f]  transition-colors cursor-default;
 	}
 	.App {
-		@apply bg-[#141414];
+		@apply bg-[#141414] overflow-x-hidden;
 	}
 	.wrapper {
-		@apply flex items-center h-screen flex-col;
+		@apply flex items-center min-h-screen flex-col;
 	}
 	.calculator-grid {
 		@apply grid grid-cols-[repeat(4,4rem)];
@@ -52,9 +52,12 @@ button {
 		@apply text-[#bcbcbc] mt-[5rem] text-xs font-[500];
 	}
 	.text-2 {
-		@apply text-[#ffffff] top-[10rem] text-3xl mb-[1rem] mt-[10rem];
+		@apply text-[#ffffff] text-3xl mb-[1rem] mt-[5rem];
 	}
 	.text-3 {
-		@apply text-[#656565] top-[13rem] text-xs font-semibold mb-[5rem] text-center w-[70%];
+		@apply text-[#656565]  text-xs font-semibold mb-[5rem] text-center w-[70%];
+	}
+	.text-4 {
+		@apply text-[#656565]  text-xs font-semibold mb-[1rem] w-[16rem];
 	}
 }
