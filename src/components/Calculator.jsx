@@ -213,7 +213,7 @@ function Calculator() {
 			if (e.key === "Period") {
 				period.current.click();
 			}
-			if (e.key === "Enter" || e.key === "=") {
+			if (<e className="key"></e> === "Enter" || e.key === "=") {
 				equal.current.click();
 				digit0.current.blur();
 				digit1.current.blur();
