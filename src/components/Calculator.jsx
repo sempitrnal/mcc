@@ -278,7 +278,7 @@ function Calculator() {
 	}, []);
 
 	return (
-		<div className="">
+		<div className="outline-none">
 			<button
 				className="hidden"
 				ref={del}
