@@ -213,7 +213,7 @@ function Calculator() {
 			if (e.key === "Period") {
 				period.current.click();
 			}
-			if (<e className="key"></e> === "Enter" || e.key === "=") {
+			if (e.key === "Enter" || e.key === "=") {
 				equal.current.click();
 				digit0.current.blur();
 				digit1.current.blur();
@@ -252,28 +252,7 @@ function Calculator() {
 			console.log(e);
 		});
 	}, []);
-	const onKeyDown = (e) => {
-		if (e.metaKey && e.which === 13) {
-			console.log("command + enter clicked");
-		}
-		console.log(e);
-	};
 
-	useEffect(() => {
-		window.addEventListener("keydown", (e) => {
-			if (e.metaKey && e.which === 13) {
-				console.log("command + enter clicked");
-			}
-			if (e.key === "Control" && e.which === 13) {
-				console.log("ctrl + enter clicked");
-			}
-			console.log(e);
-		});
-
-		return () => {
-			window.removeEventListener("keydown", onKeyDown);
-		};
-	});
 	return (
 		<div className="">
 			<button
