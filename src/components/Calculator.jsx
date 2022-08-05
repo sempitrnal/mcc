@@ -107,11 +107,12 @@ function reducer(state, { type, payload }) {
 				currentOperand: evaluate(state),
 			};
 		case ACTIONS.NEGATE:
+			if (curr.includes(",")) {
+				curr = comma(curr);
+			}
 			return {
 				...state,
-				currentOperand: (
-					parseFloat(state.currentOperand) * -1
-				).toString(),
+				currentOperand: (parseFloat(curr) * -1).toString(),
 			};
 		default:
 			return state;
@@ -157,10 +158,7 @@ function formatOperand(operand) {
 	if (operand == null) return;
 	let [integer, decimal] = operand.split(".");
 	if (integer.includes(",")) {
-		integer = integer
-			.split(",")
-			.filter((e) => e !== ",")
-			.join("");
+		integer = comma(integer);
 	}
 
 	if (decimal == null) return INTEGER_FORMATTER.format(integer);
