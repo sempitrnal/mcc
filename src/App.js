@@ -1,5 +1,5 @@
 import Calculator from "./components/Calculator";
-
+import { FaGithub } from "react-icons/fa";
 function App() {
 	return (
 		<div className="App">
@@ -36,6 +36,12 @@ function App() {
 					Made with <span className="mr-1 ml-[2px]">🤍</span> by{" "}
 					<span className="font-semibold">Bo Sampelo</span>
 				</p>
+				<a
+					href="https://github.com/whitewaterjunkie/mcc"
+					className="text-white mt-3 hover:text-[#d9d9d9] transition-colors duration-300 ease-in-out"
+				>
+					<FaGithub />
+				</a>
 			</div>
 		</div>
 	);
