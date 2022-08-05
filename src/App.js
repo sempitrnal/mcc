@@ -38,7 +38,7 @@ function App() {
 				</p>
 				<a
 					href="https://github.com/whitewaterjunkie/mcc"
-					className="text-white mt-3 hover:text-[#d9d9d9] transition-colors duration-300 ease-in-out"
+					className="text-white mt-3 hover:text-[#e7e7e7] transition-colors duration-300 ease-in-out"
 				>
 					<FaGithub />
 				</a>
