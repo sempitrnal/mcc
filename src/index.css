@@ -50,7 +50,7 @@ button {
 		@apply text-[#bcbcbc] mt-[5rem] text-xs font-[500];
 	}
 	.text-2 {
-		@apply text-[#ffffff] text-3xl mb-[1rem] mt-[5rem];
+		@apply text-[#ffffff] text-3xl mb-[1rem] mt-[3rem];
 	}
 	.text-3 {
 		@apply text-[#656565]  text-xs font-semibold mb-[5rem] text-center w-[70%];
